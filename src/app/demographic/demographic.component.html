@@ -1,0 +1,35 @@
+<form [formGroup]="demographicForm" (ngSubmit)="onSubmit()" appRemoveSubmitButton>
+  <label for="firstName">First Name:</label>
+  <input id="firstName" formControlName="firstName">
+  <div *ngIf="demographicForm.get('firstName')!.invalid && demographicForm.get('firstName')!.touched">
+    First Name is required
+  </div>
+
+  <label for="lastName">Last Name:</label>
+  <input id="lastName" formControlName="lastName">
+  <div *ngIf="demographicForm.get('lastName')!.invalid && demographicForm.get('lastName')!.touched">
+    Last Name is required
+  </div>
+
+  <label for="birthDate">Birth Date:</label>
+  <input id="birthDate" type="date" formControlName="birthDate">
+  <div *ngIf="demographicForm.get('birthDate')!.invalid && demographicForm.get('birthDate')!.touched">
+    Birth Date is required
+  </div>
+
+  <label for="age">Age:</label>
+  <input id="age" type="number" formControlName="age">
+  <div *ngIf="demographicForm.get('age')!.invalid && demographicForm.get('age')!.touched">
+    Invalid Age
+  </div>
+
+  <button type="submit" [disabled]="demographicForm.invalid">Submit</button>
+</form>
+
+<div *appUnless="isSubmitted">
+  Form not submitted yet.
+</div>
+
+<p>First Name in binary: {{ demographicForm.get('firstName')?.value || '' | stringToBinary }}</p>
+
+<a routerLink="/login">Back to Login Page</a>
